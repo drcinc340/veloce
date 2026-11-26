@@ -1,0 +1,19 @@
+{
+  "name": "AVVENTURA — Italian Arcade Quest (Ages 7–12)",
+  "short_name": "AVVENTURA",
+  "description": "Timed Pizza Chef rush orders, 60s Balloon Blitz, Italian Riddles, Leo Voice Spells & Family Leaderboard.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f1633",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
