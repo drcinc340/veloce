@@ -1,0 +1,19 @@
+{
+  "name": "VELOCE Kids — BAMBINI Multi-Age Italian Hub",
+  "short_name": "VELOCE Kids",
+  "description": "Play-to-Learn Italian for Kids Ages 4–11 with Piccolo (3–6) & Avventura Junior (7–12) modes!",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4faff",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
