@@ -1,4 +1,4 @@
-const CACHE_NAME = 'veloce-pwa-v4';
+const CACHE_NAME = 'veloce-pwa-v6';
 const STATIC_ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.json', 'icon.svg'];
 
 self.addEventListener('install', event => {
