@@ -1,0 +1,19 @@
+{
+  "name": "PICCOLO — Italian for Little Kids (Ages 3–6)",
+  "short_name": "PICCOLO",
+  "description": "Zero-reading Italian play world for little kids: Giant tap pictures, Pizzeria chef, Balloon pop & Leo the Lion!",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff8ec",
+  "theme_color": "#ff6b4a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
