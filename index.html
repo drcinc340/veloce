@@ -57,6 +57,7 @@
         <span class="divider">•</span>
         <span><strong id="hdrXp">0</strong> XP</span>
       </div>
+      <button class="kids-mode-pill" id="openKidsModeBtn" title="Switch to Kids Play-and-Learn Italian">🦁 <span>Kids</span></button>
       <button class="icon-btn" id="openSettingsBtn" title="Scan QR for iPhone/Android &amp; Voice Settings" aria-label="Settings">
         📱
       </button>
@@ -71,7 +72,7 @@
       <div class="hero-card">
         <div class="hero-top">
           <div>
-            <span class="eyebrow">ZERO-TO-SPEAKING PROTOCOL • FOR ADRIANO</span>
+            <span class="eyebrow" id="heroEyebrowUser">ZERO-TO-SPEAKING PROTOCOL • FOR ADRIANO</span>
             <h1>Speak Italian Out Loud From Minute One.</h1>
             <p class="hero-desc">
               Skip textbook filler. Master the <strong>7 phonetic rules</strong>, unlock <strong>3,000+ Latin cognates</strong>, stack <strong>6 power verbs</strong>, and lock automatic recall under a <strong>3.0-second reflex timer</strong>.
@@ -129,6 +130,39 @@
           <input type="text" id="minePhInput" placeholder="Optional phonetic note" />
           <button type="submit" class="btn-primary">+ Add to Deck</button>
         </form>
+      </div>
+
+      <!-- VELOCE Kids Play Worlds Launcher -->
+      <div class="section-card kids-launcher-card">
+        <div class="section-head" style="margin-bottom:0.75rem;">
+          <div>
+            <h2>🦁 VELOCE Kids — Play-and-Learn Italian Editions</h2>
+            <p class="muted">Play Pizzeria Chef, Balloon Pop, Talking Lion Leo Voice Spells, Sticker Worlds &amp; Comic Stories inline or open each age edition standalone.</p>
+          </div>
+        </div>
+        <div class="kids-launch-grid">
+          <button class="kids-launch-btn" data-kids-edition="piccolo">
+            <span class="kl-icon">🐣</span>
+            <div>
+              <strong>PICCOLO (Ages 3–6)</strong>
+              <div class="muted" style="font-size:0.78rem;">Zero reading, giant pictures, gentle voice play</div>
+            </div>
+          </button>
+          <button class="kids-launch-btn" data-kids-edition="kids">
+            <span class="kl-icon">🌈</span>
+            <div>
+              <strong>BAMBINI Hub (Ages 4–11)</strong>
+              <div class="muted" style="font-size:0.78rem;">Multi-age kid profiles, games &amp; sticker album</div>
+            </div>
+          </button>
+          <button class="kids-launch-btn" data-kids-edition="junior">
+            <span class="kl-icon">⚡</span>
+            <div>
+              <strong>AVVENTURA Junior (Ages 7–12)</strong>
+              <div class="muted" style="font-size:0.78rem;">Timed rush chef, 60s Blitz, riddles &amp; leaderboard</div>
+            </div>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -502,6 +536,22 @@
         <button class="btn-primary" id="saveSettingsBtn">Save Settings</button>
       </div>
     </div>
+  </div>
+
+  <!-- Fullscreen Embedded Kids Mode Overlay -->
+  <div class="kids-overlay hidden" id="kidsModeOverlay">
+    <div class="kids-overlay-bar">
+      <div class="kids-ov-eds">
+        <button class="kids-ov-ed active" data-ov-ed="kids">🌈 4–11 Hub</button>
+        <button class="kids-ov-ed" data-ov-ed="piccolo">🐣 3–6 Piccolo</button>
+        <button class="kids-ov-ed" data-ov-ed="junior">⚡ 7–12 Junior</button>
+      </div>
+      <div style="display:flex;gap:0.45rem;align-items:center;">
+        <a id="kidsStandaloneLink" href="kids/" target="_blank" rel="noopener" class="btn-secondary btn-sm" style="text-decoration:none;">Open Standalone ↗</a>
+        <button class="btn-primary btn-sm" id="closeKidsModeBtn">✕ Back to VELOCE</button>
+      </div>
+    </div>
+    <iframe id="kidsEmbeddedFrame" title="VELOCE Kids Mode" allow="microphone; autoplay"></iframe>
   </div>
 
   <!-- Toast Notification -->
