@@ -309,6 +309,8 @@ function renderHeaderAndSprint() {
   if (!App.userState || !App.telemetry) return;
   const t = App.telemetry;
   const u = App.userState;
+  const eb = document.getElementById('heroEyebrowUser');
+  if (eb) eb.textContent = 'ZERO-TO-SPEAKING PROTOCOL • FOR ' + (App.profileId || 'adriano').toUpperCase();
 
   document.getElementById('hdrCoverage').textContent = `${t.spokenCoveragePct}%`;
   document.getElementById('hdrStreak').textContent = u.streakDays || 1;
@@ -1616,6 +1618,38 @@ async function bootstrapApp() {
     renderTutor();
     modal.classList.add('hidden');
     showToast('Settings saved!');
+  });
+
+  // In-App Kids Mode Switcher & Embedded Launcher
+  const kidsOverlay = document.getElementById('kidsModeOverlay');
+  const kidsFrame = document.getElementById('kidsEmbeddedFrame');
+  const kidsStandaloneLink = document.getElementById('kidsStandaloneLink');
+
+  function openKidsOverlay(editionFolder = 'kids') {
+    const folder = ['piccolo', 'junior', 'kids'].includes(editionFolder) ? editionFolder : 'kids';
+    kidsOverlay?.querySelectorAll('.kids-ov-ed').forEach(b => {
+      b.classList.toggle('active', b.dataset.ovEd === folder);
+    });
+    if (kidsStandaloneLink) kidsStandaloneLink.href = `${folder}/`;
+    if (kidsFrame) kidsFrame.src = `${folder}/?embedded=1`;
+    kidsOverlay?.classList.remove('hidden');
+  }
+
+  function closeKidsOverlay() {
+    kidsOverlay?.classList.add('hidden');
+    if (kidsFrame) kidsFrame.src = 'about:blank';
+  }
+
+  document.getElementById('openKidsModeBtn')?.addEventListener('click', () => openKidsOverlay('kids'));
+  document.getElementById('closeKidsModeBtn')?.addEventListener('click', closeKidsOverlay);
+  document.querySelectorAll('.kids-launch-btn').forEach(btn => {
+    btn.addEventListener('click', () => openKidsOverlay(btn.dataset.kidsEdition));
+  });
+  kidsOverlay?.querySelectorAll('.kids-ov-ed').forEach(btn => {
+    btn.addEventListener('click', () => openKidsOverlay(btn.dataset.ovEd));
+  });
+  window.addEventListener('message', e => {
+    if (e?.data?.type === 'veloce-close-kids') closeKidsOverlay();
   });
 }
 
