@@ -1277,3 +1277,87 @@ button, input, select {
   .story-nav-card { min-width: 210px; }
   .stat-label-hide { display: none; }
 }
+
+/* Kids Mode Switcher Pill & Embedded Player */
+.kids-mode-pill {
+  border: 1px solid rgba(255, 180, 60, 0.55);
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.28), rgba(245, 158, 11, 0.25));
+  color: #fff6dc;
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.kids-mode-pill:hover { filter: brightness(1.12); }
+
+.kids-launcher-card {
+  margin-top: 1rem;
+  border-color: rgba(255, 159, 28, 0.35);
+  background: linear-gradient(135deg, rgba(230, 179, 75, 0.08), rgba(46, 168, 111, 0.08));
+}
+.kids-launch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.kids-launch-btn {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 0.85rem 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.14s ease, border-color 0.14s ease;
+}
+.kids-launch-btn:hover { transform: translateY(-2px); border-color: var(--gold); }
+.kl-icon { font-size: 1.95rem; flex-shrink: 0; }
+
+.kids-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 280;
+  background: #0c100e;
+  display: flex;
+  flex-direction: column;
+}
+.kids-overlay-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  background: #141a17;
+  border-bottom: 1px solid var(--border);
+}
+.kids-ov-eds { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.kids-ov-ed {
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  padding: 0.32rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.kids-ov-ed.active {
+  background: var(--gold);
+  color: #141a17;
+  border-color: var(--gold);
+}
+#kidsEmbeddedFrame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: #fff8ec;
+}
+
