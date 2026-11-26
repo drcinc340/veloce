@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0e1210" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="VELOCE" />
+  <title>VELOCE — Speak Real Italian Fast</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="tricolore-bar">
+    <span class="tri-green"></span>
+    <span class="tri-white"></span>
+    <span class="tri-red"></span>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="topbar">
+    <div class="brand" id="brandHomeBtn" title="Return to Today's Sprint">
+      <div class="brand-mark">V</div>
+      <div class="brand-copy">
+        <div class="brand-title-row">
+          <span class="brand-name">VELOCE</span>
+          <span class="brand-phonetic">veh-LOH-cheh</span>
+        </div>
+        <span class="brand-sub">80/20 Rapid Italian Engine</span>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Primary Modes">
+      <button class="nav-pill active" data-tab="sprint">Sprint</button>
+      <button class="nav-pill" data-tab="builder">80/20 Builder</button>
+      <button class="nav-pill" data-tab="reflex">3s Reflex <span class="pill-badge" id="navDueBadge">0</span></button>
+      <button class="nav-pill" data-tab="drive">Commute Audio</button>
+      <button class="nav-pill" data-tab="stories">Micro-Stories</button>
+      <button class="nav-pill" data-tab="tutor">Live Voice Tutor</button>
+    </nav>
+
+    <div class="topbar-stats">
+      <div class="stat-chip" title="Estimated everyday spoken Italian coverage unlocked">
+        <span class="stat-dot green"></span>
+        <span id="hdrCoverage">0%</span>
+        <span class="stat-label-hide">Spoken</span>
+      </div>
+      <div class="stat-chip gold" title="Daily Streak & Fluency XP">
+        <span>🔥 <strong id="hdrStreak">1</strong>d</span>
+        <span class="divider">•</span>
+        <span><strong id="hdrXp">0</strong> XP</span>
+      </div>
+      <button class="icon-btn" id="openSettingsBtn" title="Scan QR for iPhone/Android &amp; Voice Settings" aria-label="Settings">
+        📱
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport -->
+  <main class="app-container">
+
+    <!-- ==================== 1. TODAY'S SPRINT ==================== -->
+    <section class="view active" id="view-sprint">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div>
+            <span class="eyebrow">ZERO-TO-SPEAKING PROTOCOL • FOR ADRIANO</span>
+            <h1>Speak Italian Out Loud From Minute One.</h1>
+            <p class="hero-desc">
+              Skip textbook filler. Master the <strong>7 phonetic rules</strong>, unlock <strong>3,000+ Latin cognates</strong>, stack <strong>6 power verbs</strong>, and lock automatic recall under a <strong>3.0-second reflex timer</strong>.
+            </p>
+          </div>
+          <div class="coverage-dial-card">
+            <div class="coverage-big" id="sprintCoverageBig">0%</div>
+            <div class="coverage-caption">Everyday Spoken Coverage</div>
+            <div class="coverage-bar-track">
+              <div class="coverage-bar-fill" id="sprintCoverageBar" style="width: 6%"></div>
+            </div>
+            <div class="coverage-sub" id="sprintLatencyStat">Target Reflex: &lt; 3.0s</div>
+          </div>
+        </div>
+
+        <!-- 5-Step 15-Min Daily Sprint -->
+        <div class="sprint-checklist" id="sprintChecklist"></div>
+      </div>
+
+      <!-- Telemetry KPI Strip -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Due FSRS Reviews</span>
+          <div class="kpi-val" id="kpiDue">0</div>
+          <span class="kpi-foot" id="kpiNewAvail">+0 new high-freq cards ready</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Reflex Speed</span>
+          <div class="kpi-val" id="kpiLatency">—</div>
+          <span class="kpi-foot">&lt; 3.0s = Thinking in Italian</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Active Vocabulary &amp; Chunks</span>
+          <div class="kpi-val" id="kpiMastered">0</div>
+          <span class="kpi-foot" id="kpiTierLabel">Pareto Tier 2 Unlocked</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Cognate Multiplier</span>
+          <div class="kpi-val" id="kpiCognates">0 / 8</div>
+          <span class="kpi-foot">Up to 4,250 instant words</span>
+        </div>
+      </div>
+
+      <!-- Instant Phrase Miner Widget -->
+      <div class="section-card miner-quick-card">
+        <div class="section-head">
+          <div>
+            <h2>⚡ Mine Any Custom Phrase Into Your FSRS-5 Deck</h2>
+            <p class="muted">Want to remember a specific phrase for family, business, or travel? Add it here and drill it in 3s Reflex &amp; Commute Mode.</p>
+          </div>
+        </div>
+        <form id="customMineForm" class="mine-form">
+          <input type="text" id="mineItInput" placeholder="Italian phrase (e.g. Vorrei un espresso doppio)" required />
+          <input type="text" id="mineEnInput" placeholder="English meaning (e.g. I'd like a double espresso)" required />
+          <input type="text" id="minePhInput" placeholder="Optional phonetic note" />
+          <button type="submit" class="btn-primary">+ Add to Deck</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== 2. 80/20 POWER BUILDER ==================== -->
+    <section class="view" id="view-builder">
+      <div class="subtab-bar">
+        <button class="subtab-btn active" data-subtab="builder-sounds">1. The 7 Sound Keys (5 Min)</button>
+        <button class="subtab-btn" data-subtab="builder-cognates">2. 3,000+ Cognate Converter</button>
+        <button class="subtab-btn" data-subtab="builder-lego">3. 6-Verb Sentence Lego</button>
+        <button class="subtab-btn" data-subtab="builder-verbs">4. Past/Future Hack &amp; Numbers</button>
+      </div>
+
+      <!-- Sub-view A: 7 Sound Keys -->
+      <div class="subview active" id="builder-sounds">
+        <div class="banner-note">
+          <strong>Why Start Here:</strong> Italian is <strong>98% phonetic</strong>. Once these 7 rules click, you can read ANY Italian street sign, menu, or subtitle out loud with an authentic accent! Tap any example to hear crisp native audio.
+        </div>
+        <div class="cards-stack" id="phoneticKeysList"></div>
+      </div>
+
+      <!-- Sub-view B: Cognate Converter -->
+      <div class="subview" id="builder-cognates">
+        <div class="banner-note">
+          <strong>Instant Vocabulary Hack:</strong> English borrowed ~60% of its sophisticated vocabulary from Latin. Master these 8 suffix swaps to unlock <strong>4,000+ Italian words today</strong> without memorizing flashcards!
+        </div>
+        <div class="cards-stack" id="cognateLawsList"></div>
+      </div>
+
+      <!-- Sub-view C: Michel Thomas Power-Verb Lego Matrix -->
+      <div class="subview" id="builder-lego">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>🧱 Interactive Power-Verb Sentence Combinator</h2>
+              <p class="muted">Pick <strong>[Power Frame] + [Infinitive Verb] + [Real-World Detail]</strong> to build hundreds of real sentences with ZERO verb conjugation tables!</p>
+            </div>
+          </div>
+
+          <div class="lego-slots-grid">
+            <div class="lego-col">
+              <label class="slot-label">1. Power Starter</label>
+              <div class="lego-options" id="legoStarters"></div>
+            </div>
+            <div class="lego-col">
+              <label class="slot-label">2. Action Verb (Unchanged!)</label>
+              <div class="lego-options" id="legoActions"></div>
+            </div>
+            <div class="lego-col">
+              <label class="slot-label">3. Real-Life Detail</label>
+              <div class="lego-options" id="legoComplements"></div>
+            </div>
+          </div>
+
+          <div class="lego-preview-box">
+            <div class="lego-it" id="legoBuiltIt">Vorrei ordinare un caffè e un cornetto</div>
+            <div class="lego-ph" id="legoBuiltPh">vohr-RAY ohr-dee-NAH-reh oon kahf-FEH eh oon kohr-NET-toh</div>
+            <div class="lego-en" id="legoBuiltEn">I would like to order an espresso and a croissant</div>
+            <div class="lego-note" id="legoBuiltNote"></div>
+            <div class="lego-actions-row">
+              <button class="btn-primary" id="legoSpeakNormalBtn">🔊 Hear Native (1.0x)</button>
+              <button class="btn-secondary" id="legoSpeakSlowBtn">🐢 Slow (0.8x)</button>
+              <button class="btn-secondary" id="legoMicPracticeBtn">🎙️ Practice Out Loud</button>
+              <button class="btn-outline" id="legoMineBtn">+ Mine Sentence</button>
+            </div>
+            <div class="mic-feedback-inline hidden" id="legoMicFeedback"></div>
+          </div>
+        </div>
+
+        <!-- Guided Sentence Construction Challenges -->
+        <div class="section-card" style="margin-top: 1.25rem;">
+          <div class="section-head">
+            <div>
+              <h2>🎯 Active Sentence-Building Drills (Michel Thomas Method)</h2>
+              <p class="muted">Don’t just recognize Italian — construct it! Tap the Italian blocks in order (or speak into your mic) to express the English thought.</p>
+            </div>
+            <span class="pill-counter" id="challengeProgressBadge">1 / 8</span>
+          </div>
+          <div id="legoChallengeArena"></div>
+        </div>
+      </div>
+
+      <!-- Sub-view D: Polyglot Verb, Past/Future Shortcuts & Numbers/Time -->
+      <div class="subview" id="builder-verbs">
+        <div class="banner-note">
+          <strong>Skip 6 Months of Grammar Tables:</strong> Spoken Italian uses just <strong>4 high-speed patterns</strong> to talk about Right Now, Yesterday, and Tomorrow — plus tap any number or time phrase below to train your ear!
+        </div>
+        <div class="cards-stack" id="verbHacksList"></div>
+        <div class="section-card" style="margin-top:1.15rem;">
+          <div class="section-head">
+            <div>
+              <h2>🔢 Essential Numbers, Prices &amp; Clock Time (Tap to Hear)</h2>
+              <p class="muted">Master these 8 blocks so restaurant reservations, train platforms &amp; euro prices click immediately.</p>
+            </div>
+          </div>
+          <div class="ex-chips-grid" id="numbersTimeGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. FSRS-5 3-SECOND REFLEX DRILLS ==================== -->
+    <section class="view" id="view-reflex">
+      <div class="reflex-toolbar">
+        <div class="toolbar-group">
+          <label class="mini-label">Direction</label>
+          <select id="reflexDirectionSelect" class="select-pill">
+            <option value="en-to-it">Speak Mode (English → Recall Italian)</option>
+            <option value="audio-to-en">Pure Ear Mode (Italian Audio → Meaning)</option>
+          </select>
+        </div>
+        <div class="toolbar-group">
+          <label class="mini-label">Curriculum Filter</label>
+          <select id="reflexTierSelect" class="select-pill">
+            <option value="unlocked">Smart Queue (Due + Unlocked Tiers)</option>
+            <option value="1">Tier 1: Day-1 Survival</option>
+            <option value="2">Tier 2: Power Verbs</option>
+            <option value="3">Tier 3: Connectors &amp; Glue</option>
+            <option value="4">Tier 4: Cafe, Trattoria &amp; Wine</option>
+            <option value="5">Tier 5: Travel &amp; Directions</option>
+            <option value="6">Tier 6: Family, Heritage &amp; Work</option>
+            <option value="7">Tier 7: Native Expressions</option>
+            <option value="8">Tier 8: Numbers, Time &amp; Past Tense</option>
+            <option value="mined">My Mined Phrases</option>
+          </select>
+        </div>
+        <button class="btn-secondary btn-sm" id="unlockAllTiersBtn" title="Unlock all 8 Pareto frequency tiers immediately">🔓 Unlock Next Tier</button>
+      </div>
+
+      <div class="reflex-stage" id="reflexStage">
+        <div class="reflex-card" id="reflexCard">
+          <div class="reflex-card-header">
+            <span class="tier-tag" id="rfCategoryTag">Tier 1 • Day-1 Survival</span>
+            <div class="timer-ring-wrap" title="Answer under 3.0s to bypass mental translation!">
+              <svg class="timer-svg" viewBox="0 0 44 44">
+                <circle class="timer-bg" cx="22" cy="22" r="18"></circle>
+                <circle class="timer-fg" id="rfTimerCircle" cx="22" cy="22" r="18"></circle>
+              </svg>
+              <span class="timer-text" id="rfTimerText">3.0s</span>
+            </div>
+          </div>
+
+          <div class="reflex-prompt-zone">
+            <div class="prompt-instruction" id="rfInstruction">SAY THIS OUT LOUD IN ITALIAN:</div>
+            <div class="prompt-main" id="rfPromptMain">I would like...</div>
+            <button class="btn-audio-pill hidden" id="rfReplayPromptAudioBtn">🔊 Replay Italian Audio</button>
+          </div>
+
+          <!-- Voice Answer or Reveal -->
+          <div class="reflex-pre-reveal" id="rfPreReveal">
+            <button class="btn-primary btn-xl" id="rfRevealBtn">Tap to Reveal Answer (Space)</button>
+            <button class="btn-mic-outline" id="rfVoiceAnswerBtn">🎙️ Speak Answer Into Mic</button>
+            <div class="mic-live-status hidden" id="rfMicStatus">Listening in Italian...</div>
+          </div>
+
+          <!-- Answer Zone -->
+          <div class="reflex-answer-zone hidden" id="rfAnswerZone">
+            <div class="latency-pill" id="rfLatencyBadge">⚡ 1.9s — Automatic Reflex!</div>
+            <div class="answer-it" id="rfAnswerIt">Vorrei...</div>
+            <div class="answer-ph" id="rfAnswerPh">vohr-RAY</div>
+            <div class="answer-en-sub" id="rfAnswerSub">Literal: I would want...</div>
+
+            <div class="answer-audio-btns">
+              <button class="btn-secondary btn-sm" id="rfHearNormalBtn">🔊 1.0x Native</button>
+              <button class="btn-secondary btn-sm" id="rfHearSlowBtn">🐢 0.8x Slow</button>
+              <button class="btn-secondary btn-sm" id="rfHearExampleBtn">💬 Hear Full Sentence</button>
+            </div>
+
+            <div class="example-box">
+              <div class="ex-it" id="rfExampleIt">Vorrei un tavolo fuori.</div>
+              <div class="ex-en" id="rfExampleEn">I would like a table outside.</div>
+              <div class="ex-tip" id="rfTip">💡 Single highest-ROI word in Italy.</div>
+            </div>
+
+            <div class="fsrs-grade-label">Rate recall speed &amp; accuracy (FSRS-5 optimal scheduler):</div>
+            <div class="fsrs-buttons">
+              <button class="grade-btn again" data-rating="1">
+                <span class="g-name">Again</span>
+                <span class="g-int" id="int-1">1m</span>
+              </button>
+              <button class="grade-btn hard" data-rating="2">
+                <span class="g-name">Hard</span>
+                <span class="g-int" id="int-2">6m</span>
+              </button>
+              <button class="grade-btn good" data-rating="3">
+                <span class="g-name">Good</span>
+                <span class="g-int" id="int-3">15m</span>
+              </button>
+              <button class="grade-btn easy" data-rating="4">
+                <span class="g-name">Easy</span>
+                <span class="g-int" id="int-4">4d</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. HANDS-FREE COMMUTE / DRIVING MODE ==================== -->
+    <section class="view" id="view-drive">
+      <div class="drive-shell">
+        <div class="drive-header">
+          <span class="eyebrow">EYES-FREE PIMSLEUR GRADUATED LOOP</span>
+          <h2>🚗 Hands-Free Driving &amp; Commute Coach</h2>
+          <p class="muted">Press <strong>Start Commute Session</strong> once, set your phone down, and speak out loud while driving. Screen WakeLock &amp; Car Bluetooth controls stay active.</p>
+        </div>
+
+        <div class="drive-controls-top">
+          <select id="driveTopicSelect" class="select-pill">
+            <option value="smart">Smart Mix (Due FSRS + Core Survival)</option>
+            <option value="1">Day-1 Survival &amp; Politeness</option>
+            <option value="2">The 6 Power Verbs</option>
+            <option value="3">Connectors &amp; Conversation Glue</option>
+            <option value="4">Cafe, Restaurant &amp; Wine</option>
+            <option value="5">Travel, Directions &amp; Hotel</option>
+            <option value="6">Heritage, Family &amp; Business</option>
+            <option value="7">Authentic Native Reactions</option>
+            <option value="8">Numbers, Time &amp; Past-Tense Power</option>
+          </select>
+          <span class="wakelock-pill" id="wakeLockBadge">📱 Screen Awake Ready</span>
+        </div>
+
+        <div class="drive-stage-card">
+          <div class="drive-step-indicator" id="drivePhaseBadge">READY TO ROLL</div>
+          <div class="drive-main-en" id="drivePromptEn">Tap Start below for hands-free English → Speak Pause → Slow &amp; Native Italian audio drills.</div>
+          <div class="drive-main-it" id="driveTargetIt">—</div>
+          <div class="drive-main-ph" id="driveTargetPh"></div>
+
+          <div class="drive-progress-track">
+            <div class="drive-progress-fill" id="driveProgressFill" style="width:0%"></div>
+          </div>
+
+          <div class="drive-giant-buttons">
+            <button class="btn-drive-main" id="driveToggleBtn">▶️ Start Commute Session</button>
+          </div>
+
+          <div class="drive-sub-buttons">
+            <button class="btn-drive-sub" id="driveRepeatBtn">🔁 Repeat Phrase</button>
+            <button class="btn-drive-sub" id="driveSlowBtn">🐢 Hear 0.8x Slow</button>
+            <button class="btn-drive-sub" id="driveSkipBtn">⏭️ Next Phrase</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. NATIVE EAR & MICRO-STORIES ==================== -->
+    <section class="view" id="view-stories">
+      <div class="stories-layout">
+        <aside class="stories-sidebar" id="storiesList"></aside>
+        <div class="story-reader-card" id="storyReader"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. LIVE AI ITALIAN VOICE TUTOR ==================== -->
+    <section class="view" id="view-tutor">
+      <div class="tutor-layout">
+        <aside class="tutor-scenarios" id="tutorScenarioList"></aside>
+
+        <div class="tutor-chat-panel">
+          <div class="tutor-top-banner">
+            <div>
+              <div class="tutor-persona-name" id="tutorPersonaTitle">Sofia • Barista near Piazza Navona</div>
+              <div class="tutor-mission-desc" id="tutorMissionGoal">Mission: Greet Sofia, order an espresso &amp; pastry, and ask the price.</div>
+            </div>
+            <div class="tutor-top-right">
+              <span class="mission-step-pill" id="tutorStepBadge">Step 1 / 4</span>
+              <button class="btn-secondary btn-sm" id="tutorRestartBtn">↺ Restart</button>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="tutorMessages"></div>
+
+          <!-- 3 Beginner Lifelines ("Say This Next...") -->
+          <div class="lifelines-drawer">
+            <div class="lifelines-label">💡 Need a lifeline? Tap 🔊 to preview or click to speak/send:</div>
+            <div class="lifelines-grid" id="tutorLifelines"></div>
+          </div>
+
+          <!-- Voice Mic + Text Input Bar -->
+          <div class="tutor-input-bar">
+            <button class="btn-mic-live" id="tutorMicBtn" title="Tap and speak Italian out loud!">
+              <span id="tutorMicIcon">🎙️</span>
+              <span id="tutorMicLabel">Speak</span>
+            </button>
+            <input type="text" id="tutorTextInput" placeholder="Speak with 🎙️ or type in Italian (or ask 'How do I say...')..." />
+            <button class="btn-primary" id="tutorSendBtn">Send ➤</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Mobile Navigation">
+    <button class="bnav-item active" data-tab="sprint">
+      <span class="bnav-icon">⚡</span>
+      <span class="bnav-txt">Sprint</span>
+    </button>
+    <button class="bnav-item" data-tab="builder">
+      <span class="bnav-icon">🧱</span>
+      <span class="bnav-txt">80/20</span>
+    </button>
+    <button class="bnav-item" data-tab="reflex">
+      <span class="bnav-icon">🎯</span>
+      <span class="bnav-txt">Reflex</span>
+    </button>
+    <button class="bnav-item" data-tab="drive">
+      <span class="bnav-icon">🚗</span>
+      <span class="bnav-txt">Drive</span>
+    </button>
+    <button class="bnav-item" data-tab="stories">
+      <span class="bnav-icon">🎧</span>
+      <span class="bnav-txt">Stories</span>
+    </button>
+    <button class="bnav-item" data-tab="tutor">
+      <span class="bnav-icon">🎙️</span>
+      <span class="bnav-txt">Tutor</span>
+    </button>
+  </nav>
+
+  <!-- Settings & Mobile PWA Modal -->
+  <div class="modal-backdrop hidden" id="settingsModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>⚙️ VELOCE Settings &amp; Mobile App Install</h3>
+        <button class="icon-btn" id="closeSettingsBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="mobile-link-box">
+          <div class="eyebrow">SCAN TO INSTALL ON IPHONE / ANDROID HOME SCREEN</div>
+          <div style="display:flex;gap:0.85rem;align-items:center;margin:0.4rem 0 0.65rem;">
+            <img id="modalQrImg" src="api/qr" alt="Mobile App QR" style="width:94px;height:94px;border-radius:10px;border:1px solid var(--border-strong);background:#f7f3eb;flex-shrink:0;" />
+            <p class="muted" style="margin:0;font-size:0.82rem;">Point your iPhone or Android camera at this QR code (Safari → Share → <strong>Add to Home Screen</strong>) for full-screen mobile mode &amp; live HTTPS microphone access.</p>
+          </div>
+          <div class="tunnel-url-row">
+            <input type="text" id="modalTunnelUrl" readonly value="http://localhost:3945" />
+            <button class="btn-secondary btn-sm" id="copyTunnelBtn">Copy</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Default Italian Neural Voice</label>
+          <select id="settingVoiceGender" class="select-pill full">
+            <option value="female">Isabella (Warm Roman/Standard Female Neural)</option>
+            <option value="male">Diego (Clear Milan/Standard Male Neural)</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>Commute Mode Speaking Pause (Seconds)</label>
+          <input type="number" id="settingCommutePause" min="2" max="8" step="0.5" value="3.5" />
+        </div>
+
+        <div class="form-row checkbox-row">
+          <input type="checkbox" id="settingShowPhonetics" checked />
+          <label for="settingShowPhonetics">Show stressed-syllable pronunciation guides (e.g. <em>vohr-RAY</em>)</label>
+        </div>
+
+        <hr class="modal-hr" />
+        <div class="eyebrow">OPTIONAL CLOUD LLM UPGRADE (COMMERCIAL / UNLIMITED ROLEPLAY)</div>
+        <p class="muted" style="font-size:0.82rem;margin:0.25rem 0 0.75rem;">VELOCE works 100% out of the box with zero keys. Optionally paste a Gemini or OpenAI key for open-ended generative conversations.</p>
+        <div class="form-row">
+          <label>Gemini API Key (Optional)</label>
+          <input type="password" id="settingGeminiKey" placeholder="AIza... (optional)" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>OpenAI API Key (Optional)</label>
+          <input type="password" id="settingOpenaiKey" placeholder="sk-... (optional)" autocomplete="off" />
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn-primary" id="saveSettingsBtn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="appToast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
