@@ -1,0 +1,18 @@
+{
+  "name": "VELOCE — Rapid Italian Fluency Engine",
+  "short_name": "VELOCE",
+  "description": "Speak real Italian from Day 1: 80/20 Power Verbs, 3,000+ Cognates, FSRS-5 3-Second Reflex Drills, Hands-Free Commute Audio & Live AI Voice Tutor.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0e1210",
+  "theme_color": "#0e1210",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
